@@ -52,9 +52,7 @@ void printData(DynamicArray *arr, int n) {
         for (int i = 0; i < (arr->size - 1); i++) {
             printf("%d ", arr->data[i]);
         }
-        printf("%d\n", arr->data[arr->size - 1]);
     }
-    else{printf("\n");}
 }
 
 int median(DynamicArray *arr, int n){
@@ -101,7 +99,7 @@ int main(){
         med = median(&data, count);
     }
 
-    printf("COUNT %d\n", count);
+    printf("COUNT %d ", count);
     printf("SORTED ");
     printData(&data, count);
     printf("MEDIAN %d", med);

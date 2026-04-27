@@ -55,21 +55,23 @@ void printData(DynamicArray *arr, int n) {
     }
 }
 
-int median(DynamicArray *arr, int n){
+float median(DynamicArray *arr, int n){
     int cekGanjil;
-    int medi;
+    int mediGanjil;
     if(n%2 == 1){
         cekGanjil = 1;
     } else{cekGanjil = 0;}
 
     if(cekGanjil ==1){
-        medi = arr->data[n/2];
+        mediGanjil = arr->data[n/2];
+        return mediGanjil;
     }
     else{
-        medi = (arr->data[n/2]+ arr->data[(n/2)-1]) / 2;
+        float a = arr->data[(n/2)-1];
+        float b = arr->data[(n/2)];
+        float mediGenap = (a+b) / 2;
+        return mediGenap;
     }
-
-    return medi;
 }
 
 void freeArray(DynamicArray *arr){
@@ -82,11 +84,12 @@ int main(){
     DynamicArray data;
     initArray(&data, 2);
     int count=0;
-    int input;
-    int med;
+    float input;
+    int medGanjil;
+    float medGenap;
 
     do{
-        scanf("%d", &input);
+        scanf("%f", &input);
         if(input != -1){
             addData(&data, input);
             count++;
@@ -94,16 +97,17 @@ int main(){
     }
     while (input != -1);
 
-    if(count>1){
-        bubbleSort(&data, count);
-        med = median(&data, count);
-    }
+    bubbleSort(&data, count);
+
+    if(count % 2 == 1){medGanjil = median(&data, count);} 
+    else{medGenap = median(&data, count);}
 
     printf("COUNT %d ", count);
     printf("SORTED ");
     printData(&data, count);
-    printf("MEDIAN %d", med);
-
+    if(count % 2 ==1){printf("MEDIAN %d", medGanjil);}
+    else{printf("MEDIAN %.2f", medGenap);}
+    
     freeArray(&data);
     return 0;
 }

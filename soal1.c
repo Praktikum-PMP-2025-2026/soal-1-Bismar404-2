@@ -49,7 +49,7 @@ void bubbleSort(DynamicArray *arr, int n){
 
 void printData(DynamicArray *arr, int n) {
     if(n>=1){
-        for (int i = 0; i < (arr->size - 1); i++) {
+        for (int i = 0; i < (arr->size); i++) {
             printf("%d ", arr->data[i]);
         }
     }
